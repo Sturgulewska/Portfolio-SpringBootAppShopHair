@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "payment")
-public class Payment {
+public class PaymentEntity {
     @Id
     @GeneratedValue
     private Long id;
@@ -17,11 +17,11 @@ public class Payment {
 
     @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private ShopOrder shopOrder;
+    private ShopOrderEntity shopOrderEntity;
 
     @Column(name = "netto_amount")
-    private Double nettoAmount;
+    private Float nettoAmount;
 
     @Column(name = "brutto_amount")
-    private Double bruttoAmount;
+    private Float bruttoAmount;
 }

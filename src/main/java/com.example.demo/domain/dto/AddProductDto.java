@@ -1,6 +1,5 @@
 package com.example.demo.domain.dto;
 
-import com.example.demo.domain.Category;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
@@ -14,10 +13,10 @@ public class AddProductDto {
     private String productName;
 
     @Min(value = 0, message = "Kwota netto nie może być mniejsza od 0!")
-    private Double nettoProduct;
+    private Float nettoProduct;
 
     @Min(value = 0, message = "Kwota brutto nie może być mniejsza od 0!")
-    private Double bruttoProduct;
+    private Float bruttoProduct;
 
     @NotNull(message = "Należy podać id kategorii!")
     @Min(value = 0, message = "Podana kategoria jest nieporpawna!")

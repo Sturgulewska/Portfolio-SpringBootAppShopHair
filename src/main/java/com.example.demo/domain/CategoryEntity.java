@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category {
+public class CategoryEntity {
 
     @Id
     @GeneratedValue

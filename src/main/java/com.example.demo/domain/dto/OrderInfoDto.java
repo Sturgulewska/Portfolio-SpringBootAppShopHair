@@ -10,10 +10,10 @@ public class OrderInfoDto {
     private Integer productCount;
 
     //cena rzeczy z koszyka netto
-    private Double netto;
+    private Float netto;
 
     // Cena rzeczy z koszyka brutto
-    private Double brutto;
+    private Float brutto;
 
     //Lista produktów
     private List <ProductRowDto> productList;

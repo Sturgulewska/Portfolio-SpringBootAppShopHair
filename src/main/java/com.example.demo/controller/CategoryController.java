@@ -1,15 +1,10 @@
-package com.example.demo.Controller;
+package com.example.demo.controller;
 
-import com.example.demo.domain.Category;
+import com.example.demo.domain.CategoryEntity;
 import com.example.demo.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -24,24 +19,21 @@ public class CategoryController {
     }
 
 
-    // value = add_order
-    // value = add_client
-    // value = add.product
-
     @RequestMapping(
-            value = "/add_category/{categoryName}",
+            value = "/category/add_category/{categoryName}",
             method = RequestMethod.POST
     )
     public ResponseEntity<Object> addCategory(@PathVariable("categoryName") String name) {
-        Category category = categoryService.createCategory(name);
-        return new ResponseEntity<Object>(categoryService.saveCategory(category), HttpStatus.OK);
+        CategoryEntity categoryEntity = categoryService.createCategory(name);
+        return new ResponseEntity<Object>(categoryService.saveCategory(categoryEntity), HttpStatus.OK);
     }
 
     @RequestMapping(
-            value = "/getCategory/",
+            value = "/category/get_category/",
             method = RequestMethod.GET)
+
     public ResponseEntity<Object> getCategory() {
-        Iterable<Category>getCategory = categoryService.findAll();
+        Iterable<CategoryEntity>getCategory = categoryService.findAll();
         return new ResponseEntity<>(getCategory, HttpStatus.OK);
     }
 

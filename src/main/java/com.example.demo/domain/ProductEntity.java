@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "product")
 @NoArgsConstructor
-public class Product {
+public class ProductEntity {
     @Id
     @GeneratedValue
     private Long id;
@@ -19,21 +19,21 @@ public class Product {
     private String name;
 
     @Column(name = "netto")
-    private Double netto;
+    private Float netto;
 
     @Column(name = "brutto")
-    private Double brutto;
+    private Float brutto;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "category_id")
-    private Category category;
+    private CategoryEntity categoryEntity;
 
 
-    public Product(String name, Double netto, Double brutto, Category category) {
+    public ProductEntity(String name, Float netto, Float brutto, CategoryEntity categoryEntity) {
         this.name = name;
         this.netto = netto;
         this.brutto = brutto;
-        this.category = category;
+        this.categoryEntity = categoryEntity;
     }
 
 

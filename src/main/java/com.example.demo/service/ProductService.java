@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.Category;
-import com.example.demo.domain.Product;
+import com.example.demo.domain.CategoryEntity;
+import com.example.demo.domain.ProductEntity;
 import com.example.demo.domain.dto.AddProductDto;
 import com.example.demo.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -17,24 +17,24 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product createProduct(AddProductDto productDto, Category category) {
-        Product productEntity = new Product();
+    public ProductEntity createProduct(AddProductDto productDto, CategoryEntity categoryEntity) {
+        ProductEntity productEntity = new ProductEntity();
         productEntity.setName(productDto.getProductName());
         productEntity.setNetto(productDto.getNettoProduct());
         productEntity.setBrutto(productDto.getBruttoProduct());
-        productEntity.setCategory(category);
+        productEntity.setCategoryEntity(categoryEntity);
         return saveProduct(productEntity);
     }
 
-    public Product saveProduct(Product product) {
+    public ProductEntity saveProduct(ProductEntity product) {
         return productRepository.save(product);
 
     }
-    public Optional<Product> findByIdProduct(Long id){
+    public Optional<ProductEntity> findByIdProduct(Long id){
         return productRepository.findById(id);
     }
 
-    public Iterable<Product> findAll(){
+    public Iterable<ProductEntity> findAll(){
         return productRepository.findAll();
     }
 }

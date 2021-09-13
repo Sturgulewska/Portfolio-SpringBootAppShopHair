@@ -1,11 +1,10 @@
-package com.example.demo.Controller;
+package com.example.demo.controller;
 
 
-import com.example.demo.domain.Client;
-import com.example.demo.domain.ShopOrder;
-import com.example.demo.domain.Product;
+import com.example.demo.domain.ClientEntity;
+import com.example.demo.domain.ShopOrderEntity;
+import com.example.demo.domain.ProductEntity;
 import com.example.demo.domain.dto.OrderInfoDto;
-import com.example.demo.domain.dto.ProductRowDto;
 import com.example.demo.service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +32,9 @@ public class OrderController {
         this.emailService = emailService;
     }
 
-    @RequestMapping(value = "/order/{clientID}", method = RequestMethod.POST)
+    @RequestMapping(value = "/order/see_the_client/{clientID}", method = RequestMethod.POST)
     public ResponseEntity<Object> createOrder(@PathVariable("clientID") Long clientId) {
-        Optional<Client> clienOptional = clientService.findById(clientId);
+        Optional<ClientEntity> clienOptional = clientService.findById(clientId);
         if (clienOptional.isEmpty()) {
             return new ResponseEntity<>("Podany  klient " + clientId + " nie istenieje!! ", HttpStatus.BAD_REQUEST);
         }
@@ -45,12 +44,12 @@ public class OrderController {
 
     @RequestMapping(value = "/order/add_product/{orderId}/{productId}", method = RequestMethod.POST)
     public ResponseEntity<Object> addProduct(@PathVariable("orderId") Long orderId, @PathVariable("productId") Long productId) {
-        Optional<ShopOrder> optionalOrder = orderService.findByIdOrder(orderId);
+        Optional<ShopOrderEntity> optionalOrder = orderService.findByIdOrder(orderId);
         if (optionalOrder.isEmpty()) {
             return new ResponseEntity<>("Podane zamówienie " + orderId + " nie istenieje!!!", HttpStatus.BAD_REQUEST);
         }
 
-        Optional<Product> optionalProduct = productService.findByIdProduct(productId);
+        Optional<ProductEntity> optionalProduct = productService.findByIdProduct(productId);
         if (optionalProduct.isEmpty()) {
             return new ResponseEntity<>("Podany produkt  " + productId + " nie istenieje!!!", HttpStatus.BAD_REQUEST);
         }
@@ -61,12 +60,12 @@ public class OrderController {
 
     @RequestMapping(value = "/order/delete_product/{orderId}/{productId}", method = RequestMethod.POST)
     public ResponseEntity<Object> deleteProduct(@PathVariable("orderId") Long orderId, @PathVariable("productId") Long productId) {
-        Optional<ShopOrder> optionalOrder = orderService.findByIdOrder(orderId);
+        Optional<ShopOrderEntity> optionalOrder = orderService.findByIdOrder(orderId);
         if (optionalOrder.isEmpty()) {
             return new ResponseEntity<>("Podane zamówienie " + orderId + " nie istenieje!!!", HttpStatus.BAD_REQUEST);
         }
 
-        Optional<Product> optionalProduct = productService.findByIdProduct(productId);
+        Optional<ProductEntity> optionalProduct = productService.findByIdProduct(productId);
         if (optionalProduct.isEmpty()) {
             return new ResponseEntity<>("Podany produkt  " + productId + " nie istenieje!!!", HttpStatus.BAD_REQUEST);
         }
@@ -75,9 +74,9 @@ public class OrderController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/order/info/{orderId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/order/see_shopping/{orderId}", method = RequestMethod.GET)
     public ResponseEntity<Object> getOrderInfo(@PathVariable("orderId") Long orderId) {
-        Optional<ShopOrder> optionalOrder = orderService.findByIdOrder(orderId);
+        Optional<ShopOrderEntity> optionalOrder = orderService.findByIdOrder(orderId);
         if (optionalOrder.isEmpty()) {
             return new ResponseEntity<>("Podane zamówienie " + orderId + " nie istenieje!!!", HttpStatus.BAD_REQUEST);
         }
@@ -88,7 +87,7 @@ public class OrderController {
 
     @RequestMapping(value = "/order/send_confirm_email/{orderId}", method = RequestMethod.GET)
     public ResponseEntity<Object> sendConfirmEmail(@PathVariable("orderId") Long orderId) throws MessagingException {
-        Optional<ShopOrder> optionalOrder = orderService.findByIdOrder(orderId);
+        Optional<ShopOrderEntity> optionalOrder = orderService.findByIdOrder(orderId);
         if (optionalOrder.isEmpty()) {
             return new ResponseEntity<>("Podane zamówienie " + orderId + " nie istenieje!!!", HttpStatus.BAD_REQUEST);
         }
@@ -99,15 +98,15 @@ public class OrderController {
 
     @RequestMapping(value="/order/confirm/{orderHash}", method = RequestMethod.GET)
     public ResponseEntity<Object> confirmOrder(@PathVariable("orderHash") String orderHash) throws MessagingException {
-        Optional<ShopOrder> optionalShopOrder = orderService.findByOrderHash(orderHash);
+        Optional<ShopOrderEntity> optionalShopOrder = orderService.findByOrderHash(orderHash);
         if(optionalShopOrder.isEmpty()){
             return new ResponseEntity<>("Podane zamówienie nie istnieje", HttpStatus.BAD_REQUEST);
         }
 
-        ShopOrder shopOrder = optionalShopOrder.get();
-        if(!shopOrder.getConfirmed()) {
-            orderService.setOrderConfirmed(shopOrder);
-            orderService.sendOrderSent(shopOrder);
+        ShopOrderEntity shopOrderEntity = optionalShopOrder.get();
+        if(!shopOrderEntity.getConfirmed()) {
+            orderService.setOrderConfirmed(shopOrderEntity);
+            orderService.sendOrderSent(shopOrderEntity);
         }
 
         return new ResponseEntity<>(HttpStatus.OK);

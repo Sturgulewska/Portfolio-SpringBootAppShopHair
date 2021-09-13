@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.Payment;
-import com.example.demo.domain.ShopOrder;
+import com.example.demo.domain.PaymentEntity;
+import com.example.demo.domain.ShopOrderEntity;
 import com.example.demo.domain.dto.OrderInfoDto;
 import com.example.demo.repository.PaymentRepository;
 import org.springframework.stereotype.Service;
@@ -16,17 +16,17 @@ public class PaymentService {
         this.paymentRepository = paymentRepository;
     }
 
-    public Payment savePayment(Payment payment){
-        return paymentRepository.save(payment);
+    public PaymentEntity savePayment(PaymentEntity paymentEntity){
+        return paymentRepository.save(paymentEntity);
     }
 
-    public Payment createPayment(ShopOrder shopOrder, OrderInfoDto orderInfoDto) {
-        Payment payment = new Payment();
-        payment.setBruttoAmount(orderInfoDto.getBrutto());
-        payment.setNettoAmount(orderInfoDto.getNetto());
-        payment.setShopOrder(shopOrder);
-        payment.setHash(UUID.randomUUID().toString());
+    public PaymentEntity createPayment(ShopOrderEntity shopOrderEntity, OrderInfoDto orderInfoDto) {
+        PaymentEntity paymentEntity = new PaymentEntity();
+        paymentEntity.setBruttoAmount(orderInfoDto.getBrutto());
+        paymentEntity.setNettoAmount(orderInfoDto.getNetto());
+        paymentEntity.setShopOrderEntity(shopOrderEntity);
+        paymentEntity.setHash(UUID.randomUUID().toString());
 
-        return savePayment(payment);
+        return savePayment(paymentEntity);
     }
 }

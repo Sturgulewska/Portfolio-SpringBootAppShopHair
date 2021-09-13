@@ -2,10 +2,7 @@ package com.example.demo.domain;
 
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,7 +11,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "shop_order")
-public class ShopOrder {
+public class ShopOrderEntity {
 
     @GeneratedValue
     @Id
@@ -31,14 +28,14 @@ public class ShopOrder {
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "client_id")
-    private Client client;
+    private ClientEntity clientEntity;
 
     @Setter(AccessLevel.NONE)
     @OneToMany(cascade = CascadeType.REFRESH)
     @JoinTable(name = "order_product",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    List<Product> productList;
+    List<ProductEntity> productList;
 
 
 /*

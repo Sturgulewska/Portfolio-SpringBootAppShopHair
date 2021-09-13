@@ -1,11 +1,10 @@
-package com.example.demo.Controller;
+package com.example.demo.controller;
 
-import com.example.demo.domain.Category;
-import com.example.demo.domain.Client;
-import com.example.demo.domain.dto.AddProductDto;
+import com.example.demo.domain.ClientEntity;
 import com.example.demo.domain.dto.ClientDto;
 import com.example.demo.domain.dto.ErrorDto;
 import com.example.demo.service.ClientService;
+import com.example.demo.service.ValidateBindingResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,23 +30,23 @@ public class ClientController {
     }
 
     @RequestMapping(
-            value = "/getClientId/{id}",
+            value = "/client/get_client_id/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+
     public ResponseEntity<Object> getClientId(@PathVariable("id") Long id) {
-        Optional<Client> client = clientService.findById(id);
+        Optional<ClientEntity> client = clientService.findById(id);
         return new ResponseEntity<>(client, HttpStatus.OK);
     }
 
 
-    @RequestMapping(value = "/addClient",
+    @RequestMapping(value = "/client/add_client",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> addClient(@RequestBody @Valid ClientDto clientDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            List<ErrorDto> errorDtoList = new ArrayList<>();
-            bindingResult.getFieldErrors().forEach(e -> errorDtoList.add(new ErrorDto(e.getDefaultMessage(), e.getField())));
-            return new ResponseEntity<>(errorDtoList, HttpStatus.BAD_REQUEST);
+        List<ErrorDto> validateErrorList = ValidateBindingResult.validateBindingResult(bindingResult);
+        if (!validateErrorList.isEmpty()) {
+            return new ResponseEntity<>(validateErrorList, HttpStatus.BAD_REQUEST);
         }
 
         clientService.createClient( clientDto);
