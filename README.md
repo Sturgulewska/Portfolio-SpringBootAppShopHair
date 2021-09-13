@@ -16,9 +16,7 @@ I have curly hair so it is really important for me to have nice curls and it is 
 It this application you can find out which ingredients are in shampoo and masking conditioner that is good for curly hair. You will be able to look for quality products for curly hair. 
 
 # Technologies
-<p align="left"> <a href="https://www.w3schools.com/css/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a>
-<a href="https://git-scm.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> 
-<a href="https://www.w03.org/html/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> 
+<p align="left"> 
 <a href="https://www.java.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a>
 <a href="https://www.mysql.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> 
 <a href="https://postman.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> <a href="https://spring.io/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> </a> </p>
@@ -26,13 +24,18 @@ It this application you can find out which ingredients are in shampoo and maskin
 # How to run:
 <h4>Clone repository</h4>
 1. Go to directory where you want to clone this repository.<br></br>
-2. Clone repository with command:
-$ git clone 
+2. Run Git Bash there (Right click -> Git Bash Here).<br></br>
+3. Clone repository with command:
+$ git clone https://github.com/Sturgulewska/ShopHair.git
 
 <h4>Run Backend</h4>
-Run Git Bash there
-Run with command:
+1. Go to cloned directory
+2. Run Git Bash there
+3. Run with command:
 $ ./gradlew bootRun
 
 <h4>Running application</h4>
-Go to http://localhost:8080/
+1. Application is connect with Swagger
+Go to http://localhost:8080/swagger-ui/index.html
+Swagger login: admin
+Swagger password: password
