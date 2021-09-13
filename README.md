@@ -29,13 +29,13 @@ It this application you can find out which ingredients are in shampoo and maskin
 $ git clone https://github.com/Sturgulewska/ShopHair.git
 
 <h4>Run Backend</h4>
-1. Go to cloned directory
-2. Run Git Bash there
-3. Run with command:
-$ ./gradlew bootRun
+1. Go to cloned directory<br></br>
+2. Run Git Bash there<br></br>
+3. Run with command:<br></br>
+$ ./gradlew bootRun<br></br>
 
 <h4>Running application</h4>
-1. Application is connect with Swagger
-Go to http://localhost:8080/swagger-ui/index.html
-Swagger login: admin
-Swagger password: password
+1. Application is connect with Swagger<br></br>
+Go to http://localhost:8080/swagger-ui/index.html<br></br>
+Swagger login: admin<br></br>
+Swagger password: password<br></br>
