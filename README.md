@@ -36,6 +36,6 @@ $ ./gradlew bootRun<br></br>
 
 <h4>Running application</h4>
 1. Application is connect with Swagger<br></br>
-Go to http://localhost:8080/swagger-ui/index.html<br></br>
+2. Go to http://localhost:8080/swagger-ui/index.html<br></br>
 Swagger login: admin<br></br>
 Swagger password: password<br></br>
