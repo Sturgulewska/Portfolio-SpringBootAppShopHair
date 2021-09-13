@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.CategoryEntity;
+import com.example.demo.domain.Category;
 import com.example.demo.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +15,20 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Iterable<CategoryEntity> findAll(){
+    public Iterable<Category> findAll(){
         return categoryRepository.findAll();
     }
-    public Optional<CategoryEntity> findByIdCategory(Long id) {
+    public Optional<Category> findByIdCategory(Long id) {
         return categoryRepository.findById(id);
     }
 
-    public CategoryEntity createCategory(String name) {
-        CategoryEntity categoryEntity = new CategoryEntity();
-        categoryEntity.setName(name);
-        return saveCategory(categoryEntity);
+    public Category createCategory(String name) {
+        Category category = new Category();
+        category.setName(name);
+        return saveCategory(category);
     }
 
-    public CategoryEntity saveCategory(CategoryEntity categoryEntity) {
-        return categoryRepository.save(categoryEntity);
+    public Category saveCategory(Category category) {
+        return categoryRepository.save(category);
     }
 }

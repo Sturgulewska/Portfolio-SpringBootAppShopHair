@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "shop_order")
-public class ShopOrderEntity {
+public class ShopOrder {
 
     @GeneratedValue
     @Id
@@ -28,14 +28,14 @@ public class ShopOrderEntity {
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "client_id")
-    private ClientEntity clientEntity;
+    private Client client;
 
     @Setter(AccessLevel.NONE)
     @OneToMany(cascade = CascadeType.REFRESH)
     @JoinTable(name = "order_product",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    List<ProductEntity> productList;
+    List<Product> productList;
 
 
 /*

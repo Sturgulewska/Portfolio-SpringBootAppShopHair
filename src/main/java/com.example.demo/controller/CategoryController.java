@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.CategoryEntity;
+import com.example.demo.domain.Category;
 import com.example.demo.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +24,8 @@ public class CategoryController {
             method = RequestMethod.POST
     )
     public ResponseEntity<Object> addCategory(@PathVariable("categoryName") String name) {
-        CategoryEntity categoryEntity = categoryService.createCategory(name);
-        return new ResponseEntity<Object>(categoryService.saveCategory(categoryEntity), HttpStatus.OK);
+        Category category = categoryService.createCategory(name);
+        return new ResponseEntity<Object>(categoryService.saveCategory(category), HttpStatus.OK);
     }
 
     @RequestMapping(
@@ -33,7 +33,7 @@ public class CategoryController {
             method = RequestMethod.GET)
 
     public ResponseEntity<Object> getCategory() {
-        Iterable<CategoryEntity>getCategory = categoryService.findAll();
+        Iterable<Category>getCategory = categoryService.findAll();
         return new ResponseEntity<>(getCategory, HttpStatus.OK);
     }
 

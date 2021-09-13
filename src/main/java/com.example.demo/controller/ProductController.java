@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.CategoryEntity;
-import com.example.demo.domain.ProductEntity;
+import com.example.demo.domain.Category;
+import com.example.demo.domain.Product;
 import com.example.demo.domain.dto.AddProductDto;
 import com.example.demo.domain.dto.ErrorDto;
 import com.example.demo.service.CategoryService;
@@ -31,13 +31,13 @@ public class ProductController {
 
     @RequestMapping(value = "/product/get_products_by_category/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> getProductsByCategory(@PathVariable("id") Long id) {
-        Optional<ProductEntity> optionalProduct = productService.findByIdProduct(id);
+        Optional<Product> optionalProduct = productService.findByIdProduct(id);
         return new ResponseEntity<>(optionalProduct, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/products/get_all_products" ,method = RequestMethod.GET)
     public ResponseEntity<Object> getAllProducts(){
-        Iterable<ProductEntity> getAllProduct = productService.findAll();
+        Iterable<Product> getAllProduct = productService.findAll();
     return new ResponseEntity<>(getAllProduct, HttpStatus.OK);}
 
     @RequestMapping(value = "/products/add_product", method = RequestMethod.POST)
@@ -48,7 +48,7 @@ public class ProductController {
             return new ResponseEntity<>(errorDtoList, HttpStatus.BAD_REQUEST);
         }
 
-        Optional<CategoryEntity> optionalCategory = categoryService.findByIdCategory(addProductDto.getCategoryId());
+        Optional<Category> optionalCategory = categoryService.findByIdCategory(addProductDto.getCategoryId());
         if (optionalCategory.isEmpty()) {
             return new ResponseEntity<>(new ErrorDto("Nie znaleziono kategorii", "category_id "), HttpStatus.BAD_REQUEST);
         }

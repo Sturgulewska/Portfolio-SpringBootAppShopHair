@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.ClientEntity;
+import com.example.demo.domain.Client;
 import com.example.demo.domain.dto.ClientDto;
 import com.example.demo.domain.dto.ErrorDto;
 import com.example.demo.service.ClientService;
@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +34,7 @@ public class ClientController {
             produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<Object> getClientId(@PathVariable("id") Long id) {
-        Optional<ClientEntity> client = clientService.findById(id);
+        Optional<Client> client = clientService.findById(id);
         return new ResponseEntity<>(client, HttpStatus.OK);
     }
 

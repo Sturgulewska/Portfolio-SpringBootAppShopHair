@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.ClientEntity;
+import com.example.demo.domain.Client;
 import com.example.demo.domain.dto.ClientDto;
 import com.example.demo.repository.ClientRepository;
 import org.springframework.stereotype.Service;
@@ -16,34 +16,34 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
-    public ClientEntity createClient(ClientDto clientDto) {
-        ClientEntity clientEntity = new ClientEntity();
-        clientEntity.setName(clientDto.getName());
-        clientEntity.setStreet(clientDto.getStreet());
-        clientEntity.setCity(clientDto.getCity());
-        clientEntity.setState(clientDto.getState());
-        clientEntity.setZip(clientDto.getCcNumber());
-        clientEntity.setCcNumber(clientDto.getCcNumber());
-        clientEntity.setCcExpiration(clientDto.getCcExpiration());
-        clientEntity.setCcCVV(clientDto.getCcCVV());
-        clientEntity.setEmail(clientDto.getEmail());
+    public Client createClient(ClientDto clientDto) {
+        Client client = new Client();
+        client.setName(clientDto.getName());
+        client.setStreet(clientDto.getStreet());
+        client.setCity(clientDto.getCity());
+        client.setState(clientDto.getState());
+        client.setZip(clientDto.getCcNumber());
+        client.setCcNumber(clientDto.getCcNumber());
+        client.setCcExpiration(clientDto.getCcExpiration());
+        client.setCcCVV(clientDto.getCcCVV());
+        client.setEmail(clientDto.getEmail());
 
-        return saveClient(clientEntity);
+        return saveClient(client);
 
     }
 
 
-    public ClientEntity saveClient(ClientEntity clientEntity) {
+    public Client saveClient(Client client) {
 
-        return clientRepository.save(clientEntity);
+        return clientRepository.save(client);
     }
 
-    public void deleteClient(ClientEntity clientEntity) {
+    public void deleteClient(Client client) {
 
-        clientRepository.delete(clientEntity);
+        clientRepository.delete(client);
     }
 
-    public Optional<ClientEntity> findById(Long id) {
+    public Optional<Client> findById(Long id) {
 
         return clientRepository.findById(id);
     }

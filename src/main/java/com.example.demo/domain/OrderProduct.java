@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "order_product")
-public class OrderProductEntity {
+public class OrderProduct {
 
     @Id
     @GeneratedValue
@@ -16,11 +16,11 @@ public class OrderProductEntity {
 
     @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "product_id")
-    private ProductEntity product;
+    private Product product;
 
     @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "order_id")
-    private ShopOrderEntity shopOrderEntity;
+    private ShopOrder shopOrder;
 
 
 }

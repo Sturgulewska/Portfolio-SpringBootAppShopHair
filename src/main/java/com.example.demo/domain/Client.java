@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "client")
-public class ClientEntity implements Serializable {
+public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
