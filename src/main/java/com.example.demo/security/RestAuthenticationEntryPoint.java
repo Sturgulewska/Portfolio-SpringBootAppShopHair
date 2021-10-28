@@ -20,7 +20,7 @@ public class RestAuthenticationEntryPoint extends BasicAuthenticationEntryPoint 
 
     @Override
     public void afterPropertiesSet() {
-        setRealmName("Newsletter");
+        setRealmName("ShopHair");
         super.afterPropertiesSet();
     }
 }

@@ -4,6 +4,7 @@ import com.example.demo.domain.Category;
 import com.example.demo.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,8 +16,8 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Iterable<Category> findAll(){
-        return categoryRepository.findAll();
+    public Iterable<Category> getAllCategory(){
+        return (List<Category>) categoryRepository.findAll();
     }
     public Optional<Category> findByIdCategory(Long id) {
         return categoryRepository.findById(id);

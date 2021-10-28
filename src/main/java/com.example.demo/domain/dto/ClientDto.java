@@ -9,7 +9,6 @@ import javax.validation.constraints.Pattern;
 
 @Data
 public class ClientDto {
-    //Stwórz dto gdy potrzebujesz danych !! Pamiętaj -  encje to zapis do bazy danych, z dto robimy encje!
 
     @NotBlank(message = "Podanie imienia i nazwiska jest obowiązkowe")
     private String name;
