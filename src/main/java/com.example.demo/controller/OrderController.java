@@ -32,6 +32,7 @@ public class OrderController {
         this.emailService = emailService;
     }
 
+
     @RequestMapping(value = "/order/see_the_client/{clientID}", method = RequestMethod.POST)
     public ResponseEntity<Object> createOrder(@PathVariable("clientID") Long clientId) {
         Optional<Client> clienOptional = clientService.findById(clientId);

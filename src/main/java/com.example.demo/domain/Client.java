@@ -19,8 +19,6 @@ public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    // !!!!! OSOBNA TABELA NA ZAMÓWIENIE!!!!!!
-    //private LocalDateTime placedAt;
 
     @Column(name = "name")
     private String name;

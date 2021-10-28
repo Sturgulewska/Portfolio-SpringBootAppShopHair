@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("/client")
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:8080"})
 @RestController
 
 public class ClientController {

@@ -6,10 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
-@RequestMapping("/category") // localhost:8080/category
-@CrossOrigin // Dodatkowe parametry http np potrzebne do swaggera!!! - poczytaj o TYM !!!!!
+@RequestMapping("/category")
+@CrossOrigin(origins = {"http://localhost:8080"})
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -33,8 +35,9 @@ public class CategoryController {
             method = RequestMethod.GET)
 
     public ResponseEntity<Object> getCategory() {
-        Iterable<Category>getCategory = categoryService.findAll();
-        return new ResponseEntity<>(getCategory, HttpStatus.OK);
+        String hallo = " Hallo World";
+      //  Iterable<Category> getCategory = categoryService.getAllCategory();
+        return new ResponseEntity<>(hallo, HttpStatus.OK);
     }
 
 }
